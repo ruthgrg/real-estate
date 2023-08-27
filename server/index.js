@@ -1,4 +1,4 @@
-import { Express } from "express";
+import express from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import cors from "cors";
@@ -6,10 +6,11 @@ import cors from "cors";
 // Initialize/configure dotenv file so that it can listen to our env file
 dotenv.config();
 
-const app = Express();
+const app = express();
 
 // Initializing port (8000) from the env file and setting 3000 as a fallback port if 8000 somehow fails
 const PORT = process.env.PORT || 3000;
+// console.log("PORT", PORT);
 
 // One time setup to start server
 
@@ -18,7 +19,20 @@ const PORT = process.env.PORT || 3000;
  * js applications to parse incoming JSON data from HTTP requests, a standard
  * format for data transmission in web servers.
  */
-app.use(Express.json());
+app.use(express.json());
 
+/**
+ * Cookie Parser is a middleware of Node JS used to get cookie data
+ */
 app.use(cookieParser());
+
+/**
+ * As said, it enables CORS (cross-origin resource sharing). In order for your
+ * server to be accessible by other origins (domains).
+ * */
 app.use(cors());
+
+// start server by listening on port 8000
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});

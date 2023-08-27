@@ -1,0 +1,39 @@
+//
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "mongodb"
+    url      = env("DATABASE_URL")
+}
+
+model User {
+    //1.Make field of id 
+    //2.That id is a type of string
+    //3.@id of the mongo should be auto increment
+    //4. map it way the id look in the database _id
+    //5. In mongo id is object @db.ObjectId
+    id               String      @id @default(auto()) @map("_id") @db.ObjectId
+    name             String?
+    email            String?     @unique
+    image            String?
+    bookedVisits     Json[]
+    favResidenciesId String[]    @db.ObjectId
+    ownedResidencies Residency[] @relation("Owner")
+}
+
+model Residency {
+    id          String   @id @default(auto()) @map("_id") @db.ObjectId
+    title       String
+    description String
+    address     String
+    city        String
+    country     String
+    image       String
+    facilities  Json
+    userEmail   String
+    owner       User     @relation("Owner", fields: [userEmail], references: [email])
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+}
