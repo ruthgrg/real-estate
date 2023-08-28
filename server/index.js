@@ -42,14 +42,17 @@ app.listen(PORT, () => {
 // Start point /api/user
 app.use("/api/user", userRoute);
 
+// Start point
+app.use("/api/user", userRoute);
+
 // Start point /api/residency
 app.use("/api/residency", residencyRoute);
 
-// start point
+// Start point
 app.use("/api/getAllResidencies", residencyRoute);
 
-// start point
+// Start point
 app.use("/api/getResidency", residencyRoute);
 
 // Start point
-app.use("/api/user", userRoute);
+app.use("/api/getAllBooking", userRoute);
