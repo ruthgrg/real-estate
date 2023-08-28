@@ -2,6 +2,8 @@ import express from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import { userRoute } from "./routes/userRoute.js";
+import { residencyRoute } from "./routes/residencyRoute.js";
 
 // Initialize/configure dotenv file so that it can listen to our env file
 dotenv.config();
@@ -36,3 +38,15 @@ app.use(cors());
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+// Start point /api/user
+app.use("/api/user", userRoute);
+
+// Start point /api/residency
+app.use("/api/residency", residencyRoute);
+
+// start point
+app.use("/api/getAllResidencies", residencyRoute);
+
+// start point
+app.use("/api/getResidency", residencyRoute);
