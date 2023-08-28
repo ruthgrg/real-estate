@@ -17,3 +17,30 @@ export const createUser = asyncHandler(async (req, res) => {
     });
   } else res.status(201).send({ message: "User already existed" });
 });
+
+// Function to book a visit a residency
+export const bookVisit = asyncHandler(async (req, res) => {
+  const { email, date } = req.body;
+  const { id } = req.params;
+  try {
+    const alreadyBooked = await prisma.user.findUnique({
+      where: { email: email },
+      select: { bookVisits: true },
+    });
+    if (alreadyBooked.bookedVisits.some((visit) => visit.id === id)) {
+      res
+        .status(400)
+        .json({ message: "This residency is already booked by you" });
+    } else {
+      await prisma.user.update({
+        where: { email: email },
+        data: {
+          bookedVisits: { push: { id, date } },
+        },
+      });
+      res.send("Successfully booked");
+    }
+  } catch (err) {
+    throw new Error(err.message);
+  }
+});

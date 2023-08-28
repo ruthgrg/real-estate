@@ -50,3 +50,6 @@ app.use("/api/getAllResidencies", residencyRoute);
 
 // start point
 app.use("/api/getResidency", residencyRoute);
+
+// Start point
+app.use("/api/user", userRoute);
