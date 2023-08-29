@@ -42,9 +42,6 @@ app.listen(PORT, () => {
 // Start point /api/user
 app.use("/api/user", userRoute);
 
-// Start point
-app.use("/api/user", userRoute);
-
 // Start point /api/residency
 app.use("/api/residency", residencyRoute);
 

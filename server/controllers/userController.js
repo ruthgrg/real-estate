@@ -45,6 +45,7 @@ export const bookVisit = asyncHandler(async (req, res) => {
   }
 });
 
+// Get all bookings of a user
 export const getAllBooking = asyncHandler(async (req, res) => {
   const { id } = req.params;
   try {
@@ -54,7 +55,76 @@ export const getAllBooking = asyncHandler(async (req, res) => {
     });
 
     // console.log(userBookedVisits);
-    res.send(userBookedVisits);
+    res.status(200).send(userBookedVisits);
+  } catch (err) {
+    throw new Error(err.message);
+  }
+});
+
+// Canel booking of a user
+export const cancelBooking = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  const { email } = req.body;
+  try {
+    const user = await prisma.user.findUnique({
+      where: { email },
+      select: { bookedVisits: true },
+    });
+
+    const index = user.bookedVisits.findIndex((visit) => visit.id === id);
+    if (index === -1) {
+      res.status(404).send("Booking not found");
+    } else {
+      user.bookedVisits.splice(index, 1);
+      await prisma.user.update({
+        where: { email },
+        data: {
+          bookedVisits: user.bookedVisits,
+        },
+      });
+      res.send("Booking canceled successfully!");
+    }
+  } catch (err) {
+    throw new Error(err.message);
+  }
+});
+
+// Function to add a resd in favourite list of a user
+export const addFavourite = asyncHandler(async (req, res) => {
+  const { email } = req.body;
+  const { rid } = req.params;
+  try {
+    const user = await prisma.user.findUnique({
+      where: { email },
+    });
+
+    if (user.favResidenciesID.includes(rid)) {
+      const updatedUser = await prisma.user.update({
+        where: { email },
+        data: {
+          favResidenciesID: {
+            set: user.favResidenciesID.filter((id) => id !== rid),
+          },
+        },
+      });
+      res.status(200).send({
+        message: "Removed from the favourites list",
+        user: updatedUser,
+      });
+    } else {
+      const updatedUser = await prisma.user.update({
+        where: { email },
+        data: {
+          favResidenciesID: {
+            push: rid,
+          },
+        },
+      });
+      res.status(200).send({
+        message: "Successfully added to the favourite",
+        user: updatedUser,
+      });
+    }
   } catch (err) {
     throw new Error(err.message);
   }
