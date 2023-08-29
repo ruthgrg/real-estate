@@ -129,3 +129,19 @@ export const addFavourite = asyncHandler(async (req, res) => {
     throw new Error(err.message);
   }
 });
+
+// Function to get all favourites list of a user
+export const getAllFavourites = asyncHandler(async (req, res) => {
+  const { email } = req.body;
+  try {
+    const favResd = await prisma.user.findUnique({
+      where: { email },
+      select: { favResidenciesID: true },
+    });
+    res.status(200).send({
+      favResd,
+    });
+  } catch (err) {
+    console.log(err.message);
+  }
+});

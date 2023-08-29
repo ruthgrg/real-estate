@@ -1,0 +1,27 @@
+[{
+	"_id": {
+		"$oid": "64ecc394bcd5ade261004eeb"
+	},
+	"email": "max@muster.com",
+	"bookedVisits": [
+		{
+			"id": "64ecc9ba1c1531c9e296b7a6",
+			"date": "19/01/2020"
+		}
+	],
+	"favResidenciesID": [
+		{
+			"$oid": "64ecc6faab17f39671fb1004"
+		},
+		{
+			"$oid": "64ecc9ba1c1531c9e296b7a6"
+		}
+	]
+},
+{
+	"_id": {
+		"$oid": "64edc494a46b29beb2d0547e"
+	},
+	"email": "marlin@musterfrau.com"
+}]
+
