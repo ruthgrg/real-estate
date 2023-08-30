@@ -45,7 +45,7 @@ if [[ "$action" == "export" ]]; then
 
   for collection in "${collection_array[@]}"; do
     collection=$(echo "$collection" | xargs) # Remove leading/trailing spaces
-    if mongoexport --uri="$DATABASE_URL" --db="$DATABASE_NAME" --collection="$collection" --out="$ROOT_DIR/data/exportDB/$collection.json" --jsonArray --pretty; then
+    if mongoexport --uri="$DATABASE_URL" --db="$DATABASE_NAME" --collection="$collection" --out="$ROOT_DIR/seeds/db/exportDB/$collection.json" --jsonArray --pretty; then
       echo "Exported collection $collection to $collection.json. ✔"
     else
       echo "Error exporting collection $collection! X"
@@ -59,12 +59,12 @@ elif [[ "$action" == "import" ]]; then
   for collection in "${collection_array[@]}"; do
     collection=$(echo "$collection" | xargs) # Remove leading/trailing spaces
     if [[ "$collection" != "system.indexes" ]]; then
-      mongosh "$DATABASE_URL/$DATABASE_NAME" --eval "db.$collection.deleteMany({})"
+      mongosh "$DATABASE_URL/$DATABASE_NAME" --eval "db.$collection.remove({})"
       echo "Emptied collection $collection"
     fi
   done
 
-  json_files=$(ls "$ROOT_DIR/data"/*.json)
+  json_files=$(ls "$ROOT_DIR/seeds/db/exportDB"/*.json)
   for json_file in $json_files; do
     collection="${json_file##*/}"    # Extract collection name from filename
     collection="${collection%.json}" # Remove .json extension
