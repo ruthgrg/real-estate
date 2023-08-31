@@ -1,4 +1,4 @@
-import "./Hero.css"
+import "./hero.css"
 import {HiLocationMarker} from "react-icons/hi"
 import CountUp from "react-countup"
 
