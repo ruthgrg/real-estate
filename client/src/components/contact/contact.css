@@ -1,16 +1,16 @@
-.c-container {
+.con-container {
     justify-content: space-between;
 }
 
-.c-container > div {
+.con-container > div {
     flex: 1;
 }
 
-.c-right {
+.con-right {
     width: 100%;
 }
 
-.c-left {
+.con-left {
     gap: 0.5rem;
 }
 
@@ -61,4 +61,20 @@
     background: var(--blue-gradient);
     color: white;
     scale: .8;
+}
+
+@media (max-width: 1024px ) {
+    .con-container {
+        flex-direction: column;
+    } 
+
+    .con-right {
+        justify-content: center;
+    }
+
+    .contactModes {
+        width: 100%;
+    }
+
+
 }

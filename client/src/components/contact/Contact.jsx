@@ -6,8 +6,8 @@ import "./contact.css"
 const Contact = () => {
   return (
     <section className='c-wrapper'>
-        <div className="paddings innerWidth flexCenter c-container">
-            <div className="flexColStart c-left">
+        <div className="paddings innerWidth flexCenter con-container">
+            <div className="flexColStart con-left">
                 <span className='orangeText'>Our Contact</span>
                 <span className='primaryText'>Easy to contact us</span>
                 <span className='secondaryText'>e always ready to help by providing the best services for you <br/>
@@ -77,7 +77,7 @@ const Contact = () => {
                     </div>
                 </div>
             </div>
-            <div className="c-right">
+            <div className="con-right">
                 <div className="image-container">
                     <img src="./contact.jpg" alt="" />
                 </div>

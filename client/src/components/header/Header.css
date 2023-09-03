@@ -23,8 +23,15 @@
 }
 
 @media (max-width: 768px) {
+
+    .white-gradient {
+        width: 10rem;
+        height: 12rem;
+    }
+
     .menu-icon {
       display: block;
+      cursor: pointer;
     }
 
     .h-menu {
@@ -41,5 +48,8 @@
         align-items: flex-start;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
         transition: all 300ms ease-in;
+        z-index: 2;
     }
+
+
 }

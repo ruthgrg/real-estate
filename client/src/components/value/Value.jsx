@@ -43,7 +43,7 @@ const Value = () => {
                                         </AccordionItemButton>
                                     </AccordionItemHeading>
                                     <AccordionItemPanel>
-                                        <p className="secondarytext">{item.detail}</p>
+                                        <p className="secondaryText">{item.detail}</p>
                                     </AccordionItemPanel>
                                 </AccordionItem>
                             );
