@@ -69,12 +69,26 @@
     } 
 
     .con-right {
+        display: flex;
         justify-content: center;
     }
 
     .contactModes {
+        display: flex;
+        flex-direction: column;
         width: 100%;
     }
+
+    .row {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .mode {
+        width: 100%;
+    }
+
+
 
 
 }
