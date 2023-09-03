@@ -35,10 +35,11 @@
     }
 
     .h-menu {
+  
         position: absolute;
         color: var(--black);
         top: 3rem;
-        right: 4rem;
+        right:-100%;
         background: white;
         flex-direction: column;
         font-weight: 500;
@@ -52,4 +53,8 @@
     }
 
 
+}
+
+.showMenu {
+    display: block;
 }

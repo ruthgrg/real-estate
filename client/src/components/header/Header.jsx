@@ -7,7 +7,7 @@ const Header = () => {
 
   const getMenuStyles = (menuOpened) => {
       if(document.documentElement.clientWidth <= 800)
-        return {right: menuOpened === false && "-100%"}
+        return {right: menuOpened && "4rem"}
   }
 
   return (
@@ -24,7 +24,9 @@ const Header = () => {
                   <a href="">Get Started</a>
                   <button className="button"><a href="">Contact</a></button>
               </div>
-              <div className="menu-icon" onClick={() => setMenuOpened(prevState => !prevState)}>
+              <div className= {`menu-icon`} onClick={() => {
+                  setMenuOpened(prevState => !prevState)
+              }}>
                 <BiMenuAltRight size={30}/>
             </div>
             </OutsideClickHandler>
