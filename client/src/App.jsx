@@ -5,7 +5,7 @@ import Website from "./pages/Website";
 import Layout from "./components/layout/Layout";
 import Properties from "./pages/properties/Properties";
 import {QueryClient, QueryClientProvider} from "react-query"
-import { ReactQueryDevtools } from "react-query-devtools";
+// import { ReactQueryDevtools } from "react-query-devtools";
 import {ToastContainer} from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 
@@ -25,7 +25,7 @@ function App() {
           </Suspense>
         </BrowserRouter>
         <ToastContainer/>
-      <ReactQueryDevtools initialIsOpen={false}/>
+      {/* <ReactQueryDevtools initialIsOpen={false}/> */}
     </QueryClientProvider>
   );
 }

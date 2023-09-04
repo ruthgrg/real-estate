@@ -45,11 +45,11 @@ app.use("/api/user", userRoute);
 // Start point /api/residency
 app.use("/api/residency", residencyRoute);
 
-// Start point
-app.use("/api/getAllResidencies", residencyRoute);
+// // Start point
+// app.use("/api/getAllResidencies", residencyRoute);
 
-// Start point
-app.use("/api/getResidency", residencyRoute);
+// // Start point
+// app.use("/api/getResidency", residencyRoute);
 
-// Start point
-app.use("/api/getAllBooking", userRoute);
+// // Start point
+// app.use("/api/getAllBooking", userRoute);
