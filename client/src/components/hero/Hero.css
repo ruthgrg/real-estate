@@ -52,23 +52,6 @@
     z-index: -1;
 }
 
-.search-bar {
-    display: flex;
-    background-color: white;
-    border-radius: 5px;
-    border: ßpx solid rgba(255, 255, 	255, 0.12);
-    padding: 0.5rem 1rem;
-    width: 100%;
-
- 
-}
-
-.search-bar > input {
-    border: none;
-    outline: none;
-    width: 100%;
-}
-
 .stats {
 width: 100%;
 justify-content: space-between;
