@@ -63,3 +63,16 @@ export const getResidency = asyncHandler(async (req, res) => {
   });
   res.send(residency);
 });
+
+export const addManyResidencies = asyncHandler(async (req, res) => {
+  const manyResidencies = req.body;
+  try {
+    await prisma.residency.createMany({
+      data: [...manyResidencies],
+    });
+
+    res.status(200).send("Successfully added");
+  } catch (error) {
+    throw new Error(error.message);
+  }
+});
