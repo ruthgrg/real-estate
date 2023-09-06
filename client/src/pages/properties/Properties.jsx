@@ -7,7 +7,6 @@ import PropertyCard from "../../components/propertyCard/PropertyCard";
 const Properties = () => {
   //custom hook
   const {data, isError, isLoading} = useProperties();
-  console.log(data)
   if(isError) {
     return (
       <div className="wrapper">
