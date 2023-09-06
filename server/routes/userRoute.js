@@ -7,6 +7,7 @@ import {
   addFavourite,
   getAllFavourites,
 } from "../controllers/userController.js";
+import { deleteResidency } from "../controllers/residencyController.js";
 
 // Simple routes to send and retrieve the data
 const router = express.Router();

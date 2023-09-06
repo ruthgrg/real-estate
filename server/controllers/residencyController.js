@@ -64,6 +64,19 @@ export const getResidency = asyncHandler(async (req, res) => {
   res.send(residency);
 });
 
+export const deleteResidency = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+  try {
+    const deletedResidency = await prisma.residency.delete({
+      where: { id },
+    });
+    res.status(200).send(deletedResidency);
+  } catch (error) {
+    throw new Error(error.message);
+  }
+});
+
 export const addManyResidencies = asyncHandler(async (req, res) => {
   const manyResidencies = req.body;
   try {
@@ -72,6 +85,18 @@ export const addManyResidencies = asyncHandler(async (req, res) => {
     });
 
     res.status(200).send("Successfully added");
+  } catch (error) {
+    throw new Error(error.message);
+  }
+});
+
+export const deleteAllResidencies = asyncHandler(async (req, res) => {
+  const { email } = req.body;
+  try {
+    await prisma.residency.deleteMany({
+      where: { userEmail: email },
+    });
+    res.status(200).send("Deleted successfully");
   } catch (error) {
     throw new Error(error.message);
   }

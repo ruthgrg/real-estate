@@ -4,8 +4,34 @@ import "./residencies.css"
 import data from "../../utils/slider.json"
 import { sliderSettings } from "../../utils/common";
 import PropertyCard from "../propertyCard/PropertyCard";
+import useProperties from "../../hooks/UseProperties";
+import { PuffLoader } from "react-spinners";
 
 const Residencies = () => {
+  //custom hook
+  const {data, isError, isLoading} = useProperties();
+  console.log(data)
+  if(isError) {
+    return (
+      <div className="wrapper">
+        <span>Error while fetching data</span>
+      </div>
+    );
+  }
+
+  if(isLoading) {
+    return(
+      <div className="wrapper flexCenter" style={{height: "60vh"}}>
+        <PuffLoader
+          height="80"
+          width="80"
+          radius={1}
+          color="#4066ff"
+          aria-label="puff-loading"
+        />
+      </div>
+    );
+  }
   return (
     <section className="r-wrapper">
         <div className="paddings innerWidth r-container">
@@ -16,7 +42,7 @@ const Residencies = () => {
             <Swiper {...sliderSettings}>
                 <SliderButtons/>
                 {
-                    data.map((card, index) => 
+                    data.slice(0, 8).map((card, index) => 
                     <SwiperSlide key={index}>
                         <PropertyCard card={card}/>
                     </SwiperSlide>)
