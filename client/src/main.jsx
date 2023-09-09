@@ -7,8 +7,8 @@ import {Auth0Provider} from "@auth0/auth0-react"
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Auth0Provider
-      domain={import.meta.env.DOMAIN}
-      clientId={import.meta.env.CLIENTID}
+      domain={import.meta.env.VITE_DOMAIN}
+      clientId={import.meta.env.VITE_CLIENTID}
       authorizationParams={{
       redirect_uri:"http://127.0.0.1:5173"
     }}
