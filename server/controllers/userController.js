@@ -146,3 +146,12 @@ export const getAllFavourites = asyncHandler(async (req, res) => {
     console.log(err.message);
   }
 });
+
+export const getAllUser = asyncHandler(async (req, res) => {
+  try {
+    const allUsers = await prisma.user.findMany();
+    res.status(200).send(allUsers);
+  } catch (error) {
+    console.log(error.message);
+  }
+});
