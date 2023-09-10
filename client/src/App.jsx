@@ -25,6 +25,7 @@ function App() {
     bookings: [],
     token: null
   });
+
   return (
     <UserDetailContext.Provider value={{userDetails, setUserDetails}}>
       {/* UserSetailContext.Provider ensure that user is available in whole app */}

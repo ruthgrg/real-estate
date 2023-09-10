@@ -6,11 +6,13 @@ import {AiFillHeart} from "react-icons/ai";
 import {FaShower} from "react-icons/fa"
 import {MdLocationPin, MdMeetingRoom} from "react-icons/md"
 import Map from "../../components/map/Map";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import useAuthCheck from "../../hooks/useAuthCheck";
 import BookingModal from "../../components/bookingModal/BookingModal";
 import "./property.css"
+import UserDetailContext from "../../context/userDetailContext";
+import { Button } from "@mantine/core";
 
 const Property = () => {
     /**
@@ -35,6 +37,7 @@ const Property = () => {
     const [modalOpened, setModalOpened] = useState(false);
     const {validateLogin} = useAuthCheck();
     const {user} = useAuth0();
+    const {userDetails: {token, bookings, setUserDetails}} = useContext(UserDetailContext);
     if(isError) {
     return (
       <div className="wrapper">
@@ -102,9 +105,21 @@ const Property = () => {
                                 {data?.address} {data?.city} {data?.country}
                             </span>
                         </div>
-                        <button className="button"
-                        onClick={() => {validateLogin() && setModalOpened(true)}}
-                        >Book your visits</button>
+                          {
+                            bookings?.map(booking => booking.id).includes(id) ?
+                              (
+                                <Button variant="outline" w={"100%"} color="red">
+                                  <span>Cancel booking</span>
+                                </Button>
+                              ) : (
+                                <button className="button"
+                                  onClick={() => {validateLogin() && setModalOpened(true)}}
+                                  >
+                                  Book your visit
+                                </button>
+                              )
+                          }
+                    
                         <BookingModal
                           opened={modalOpened}
                           setOpened={setModalOpened}
