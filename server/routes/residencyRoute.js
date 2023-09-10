@@ -9,14 +9,15 @@ import {
   addManyResidencies,
   deleteAllResidencies,
 } from "../controllers/residencyController.js";
+import jwtCheck from "../config/auth0Config.js";
 
 const router = express.Router();
 
 // End point /register
-router.post("/create", createResidency);
+router.post("/create", jwtCheck, createResidency);
 router.get("/allResd", getAllResidencies);
 router.get("/:id", getResidency);
 router.post("/addManyResidencies", addManyResidencies);
-router.delete("/deleteResidency/:id", deleteResidency);
+router.delete("/deleteResidency/:id", jwtCheck, deleteResidency);
 router.delete("/deleteAllResidencies", deleteAllResidencies);
 export { router as residencyRoute };

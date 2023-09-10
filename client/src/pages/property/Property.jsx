@@ -6,6 +6,10 @@ import {AiFillHeart} from "react-icons/ai";
 import {FaShower} from "react-icons/fa"
 import {MdLocationPin, MdMeetingRoom} from "react-icons/md"
 import Map from "../../components/map/Map";
+import { useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import useAuthCheck from "../../hooks/useAuthCheck";
+import BookingModal from "../../components/bookingModal/BookingModal";
 import "./property.css"
 
 const Property = () => {
@@ -28,7 +32,9 @@ const Property = () => {
     const id = pathname.split("/").slice(-1)[0];
     // custom hooks
     const {data, isError, isLoading}  = useQuery(["resd", id], () => getProperty(id));
-    console.log(data)
+    const [modalOpened, setModalOpened] = useState(false);
+    const {validateLogin} = useAuthCheck();
+    const {user} = useAuth0();
     if(isError) {
     return (
       <div className="wrapper">
@@ -96,7 +102,15 @@ const Property = () => {
                                 {data?.address} {data?.city} {data?.country}
                             </span>
                         </div>
-                        <button className="button">Book your visits</button>
+                        <button className="button"
+                        onClick={() => {validateLogin() && setModalOpened(true)}}
+                        >Book your visits</button>
+                        <BookingModal
+                          opened={modalOpened}
+                          setOpened={setModalOpened}
+                          propertyId={id}
+                          email={user?.email}
+                        />
                     </div>
                     {/** right */}
                     <div className="map">
