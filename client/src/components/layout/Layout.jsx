@@ -7,10 +7,18 @@ import UserDetailContext from '../../context/userDetailContext.jsx';
 import { useContext, useEffect } from "react";
 import { useMutation } from 'react-query';
 import { createUser } from '../../utils/api.js';
+import useFavourites from '../../hooks/useFavourites';
+import useBookings from '../../hooks/useBookings';
+
 
 const Layout = () => {
+
+  useFavourites();
+  useBookings();
+
   const {isAuthenticated, user, getAccessTokenWithPopup} = useAuth0();
   const {setUserDetails} = useContext(UserDetailContext);
+  
 
   const {mutate} = useMutation({
     mutationKey: [user?.email],

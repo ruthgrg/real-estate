@@ -105,3 +105,43 @@ export const toFav = async (id, email, token) => {
     throw error;
   }
 };
+
+export const getAllfav = async (email, token) => {
+  if (!token) return;
+  try {
+    const response = await api.post(
+      "/user/getAllfav",
+      {
+        email: email,
+      },
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+
+    return response.data.favResd["favResidenciesID"];
+  } catch (e) {
+    toast.error("Something went wrong while fetching, please try again later");
+    throw e;
+  }
+};
+
+export const getAllBookings = async (email, token) => {
+  if (!token) return;
+  try {
+    const response = await api.post(
+      "/user/getAllBookings",
+      {
+        email: email,
+      },
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+    console.log("response", response);
+    return response.data;
+  } catch (error) {
+    toast.error("Something went wrong while Fetching, please try again later");
+    throw error;
+  }
+};

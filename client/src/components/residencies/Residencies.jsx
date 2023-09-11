@@ -10,7 +10,6 @@ import { PuffLoader } from "react-spinners";
 const Residencies = () => {
   //custom hook
   const {data, isError, isLoading} = useProperties();
-  console.log(data)
   if(isError) {
     return (
       <div className="wrapper">
