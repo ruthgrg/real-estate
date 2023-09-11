@@ -2,19 +2,19 @@ import { useAuth0 } from "@auth0/auth0-react"
 import { toast } from "react-toastify";
 
 
-const useAuthcheck = () => {
+function useAuthCheck() {
 
-    const {isAuthenticated} = useAuth0();
-    const validateLogin = () => {
-        if(!isAuthenticated) {
-            toast.error("You must be logged in", {position:"bottom-right"});
-            return false;
-        } else return true
+  const { isAuthenticated } = useAuth0();
+  const validateLogin = () => {
+    if (!isAuthenticated) {
+      toast.error("You must be logged in", { position: "bottom-right" });
+      return false;
+    } else return true;
 
-    }
+  };
   return (
-    {validateLogin}
-  )
+    { validateLogin }
+  );
 }
 
-export default useAuthcheck
+export default useAuthCheck

@@ -14,6 +14,7 @@ import "./property.css"
 import UserDetailContext from "../../context/userDetailContext";
 import { Button } from "@mantine/core";
 import { toast } from "react-toastify";
+import Heart from "../../components/heart/Heart";
 
 const Property = () => {
     /**
@@ -77,8 +78,8 @@ const Property = () => {
         <div className='flexColStart paddings innerWidth property-container'>
                 {/** like button */}  
                 <div className="like">
-                    <AiFillHeart size={24} color="white"/>
-                </div>  
+                   <Heart id={id}/>
+                </div>
 
                 {/** image */}
                 <img src={data?.image} alt="home image"/>

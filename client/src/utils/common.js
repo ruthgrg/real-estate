@@ -8,3 +8,11 @@ export const sliderSettings = {
     1100: { slidesPerView: 4 },
   },
 };
+
+export const updateFavourites = (id, favourites) => {
+  if (favourites.includes(id)) {
+    return favourites.filter((favouriteId) => favouriteId !== id);
+  } else {
+    return [...favourites, id];
+  }
+};
