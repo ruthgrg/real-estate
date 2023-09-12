@@ -6,10 +6,20 @@ import { useAuth0 } from "@auth0/auth0-react";
 import ProfileMenu from "../profileMenu/ProfileMenu.jsx"
 
 import "./header.css";
+import AddPropertyModal from "../addPropertyModal/AddPropertyModal.jsx";
+import useAuthCheck from "../../hooks/useAuthCheck.jsx";
 const Header = () => {
   const [menuOpened, setMenuOpened] = useState(false);
   // Hook from auth0: Pre-build mechanism from the auth0
   const {loginWithRedirect, isAuthenticated, user, logout} = useAuth0();
+  const [addPropertyOpened, setAddPropertyOpened] = useState(false);
+  const {validateLogin} = useAuthCheck();
+
+  const handleAddPropertyClick = () => {
+    if(validateLogin()) {
+      setAddPropertyOpened(true);
+    }
+  }
 
   const getMenuStyles = (menuOpened) => {
       if(document.documentElement.clientWidth <= 800)
@@ -29,6 +39,14 @@ const Header = () => {
               <div className="flexCenter h-menu" style={getMenuStyles(menuOpened)} >
                   <NavLink to="/properties">Properties</NavLink>
                   <a href="mailto:max@muster.com">Contact us</a>
+
+                  {/** Add properties */}
+                  <div onClick={handleAddPropertyClick}>Add Property</div>
+                  <AddPropertyModal
+                    opened={addPropertyOpened}
+                    setOpened={setAddPropertyOpened}
+                  />
+                  {/** Login button */}
                    {
                     !isAuthenticated ?
 
