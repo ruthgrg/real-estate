@@ -4,7 +4,7 @@ import { validateString } from '../../utils/common';
 import useCountries from "../../hooks/useCountries.jsx"
 import Map from '../map/Map';
 
-const AddLocation = ({propertyDetails, setPropertyDetails, nextStep, prevStep}) => {
+const AddLocation = ({propertyDetails, setPropertyDetails, nextStep}) => {
     const {getAll} = useCountries();
     const form = useForm({
         initialValues: {
@@ -65,7 +65,6 @@ const AddLocation = ({propertyDetails, setPropertyDetails, nextStep, prevStep}) 
                     w={"100%"}
                     withAsterisk
                     label="City"
-                    clearable
                     {
                         ...form.getInputProps("city", {type: "input"})
                     }
@@ -75,7 +74,6 @@ const AddLocation = ({propertyDetails, setPropertyDetails, nextStep, prevStep}) 
                     w={"100%"}
                     withAsterisk
                     label="Address"
-                    clearable
                     {
                         ...form.getInputProps("address", {type: "input"})
                     }
