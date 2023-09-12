@@ -37,7 +37,8 @@ const AddPropertyModal = ({opened, setOpened}) => {
             <Stepper active={active} onStepClick={setActive} breakpoint="sm" allowNextStepsSelect={false}>
                 <Stepper.Step label="Location" description="Address">
                     <AddLocation
-                        nextStop={nextStep}
+                        nextStep={nextStep}
+                        prevStep={prevStep}
                         propertyDetails={propertyDetails}
                         setPropertyDetails={setPropertyDetails}
                     />

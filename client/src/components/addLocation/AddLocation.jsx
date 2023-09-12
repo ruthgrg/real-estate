@@ -1,10 +1,10 @@
 import { useForm } from '@mantine/form';
-import {Select, TextInput} from "@mantine/core"
+import {Group, Select, TextInput, Button} from "@mantine/core"
 import { validateString } from '../../utils/common';
 import useCountries from "../../hooks/useCountries.jsx"
 import Map from '../map/Map';
 
-const AddLocation = ({propertyDetails, setPropertyDetails}) => {
+const AddLocation = ({propertyDetails, setPropertyDetails, nextStep, prevStep}) => {
     const {getAll} = useCountries();
     const form = useForm({
         initialValues: {
@@ -21,8 +21,25 @@ const AddLocation = ({propertyDetails, setPropertyDetails}) => {
     });
 
     const {country, city, address} = form.values;
+
+    const handleSubmit = () => {
+        const {hasErrors} = form.validate();
+        if(!hasErrors) {
+            setPropertyDetails((prev) => ({
+                ...prev, 
+                city: city, 
+                country: country, 
+                address: address
+            }));
+
+            nextStep();
+        }
+
+    }
+
+
   return (
-    <form>
+    <form onSubmit={(e) => {e.preventDefault(); handleSubmit()}}>
         <div className='flexCenter' style={{
             justifyContent: "space-between",
             gap: "3rem",
@@ -48,6 +65,7 @@ const AddLocation = ({propertyDetails, setPropertyDetails}) => {
                     w={"100%"}
                     withAsterisk
                     label="City"
+                    clearable
                     {
                         ...form.getInputProps("city", {type: "input"})
                     }
@@ -57,6 +75,7 @@ const AddLocation = ({propertyDetails, setPropertyDetails}) => {
                     w={"100%"}
                     withAsterisk
                     label="Address"
+                    clearable
                     {
                         ...form.getInputProps("address", {type: "input"})
                     }
@@ -73,6 +92,10 @@ const AddLocation = ({propertyDetails, setPropertyDetails}) => {
                 />
             </div>
         </div>
+
+        <Group position='center' mt={"xl"}>
+            <Button type="submit">Next Step</Button>
+        </Group>
     </form>
   )
 }
