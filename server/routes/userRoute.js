@@ -17,7 +17,7 @@ const router = express.Router();
 // End point /register
 router.post("/register", jwtCheck, createUser);
 router.post("/bookVisit/:id", jwtCheck, bookVisit);
-router.get("/getAllBookings", jwtCheck, getAllBookings);
+router.post("/getAllBookings", jwtCheck, getAllBookings);
 router.get("/getAllUsers", getAllUser);
 router.post("/cancelBooking/:id", jwtCheck, cancelBooking);
 router.post("/addFavourite/:rid", jwtCheck, addFavourite);

@@ -138,8 +138,7 @@ export const getAllBookings = async (email, token) => {
         headers: { Authorization: `Bearer ${token}` },
       }
     );
-    console.log("response", response);
-    return response.data;
+    return response.data["bookedVisits"];
   } catch (error) {
     toast.error("Something went wrong while Fetching, please try again later");
     throw error;
