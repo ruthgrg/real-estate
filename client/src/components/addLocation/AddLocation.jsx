@@ -1,11 +1,12 @@
 import { useForm } from '@mantine/form';
 import {Group, Select, TextInput, Button} from "@mantine/core"
-import { validateString } from '../../utils/common';
+import { validateString } from '../../utils/common.js';
 import useCountries from "../../hooks/useCountries.jsx"
 import Map from '../map/Map';
 
 const AddLocation = ({propertyDetails, setPropertyDetails, nextStep}) => {
     const {getAll} = useCountries();
+
     const form = useForm({
         initialValues: {
             country: propertyDetails?.country,
@@ -26,20 +27,24 @@ const AddLocation = ({propertyDetails, setPropertyDetails, nextStep}) => {
         const {hasErrors} = form.validate();
         if(!hasErrors) {
             setPropertyDetails((prev) => ({
-                ...prev, 
-                city: city, 
-                country: country, 
-                address: address
-            }));
+                    ...prev, 
+                    country: country,
+                    city: city,
+                    address: address,
+                })
+            );
 
-            nextStep();
+           nextStep();
         }
 
     }
 
 
   return (
-    <form onSubmit={(e) => {e.preventDefault(); handleSubmit()}}>
+    <form onSubmit={(e) => {
+            e.preventDefault();
+            handleSubmit();
+        }}>
         <div className='flexCenter' style={{
             justifyContent: "space-between",
             gap: "3rem",
@@ -48,7 +53,7 @@ const AddLocation = ({propertyDetails, setPropertyDetails, nextStep}) => {
          }}>
 
           {/** left side */}
-            <div className='flexColStart' style={{flex: "1", gap: "1rem"}}>
+            <div className='flexColStart' style={{flex: "1", gap: "1rem", marginTop: "3rem"}}>
                 <Select
                     w={"100%"}
                     withAsterisk
@@ -92,7 +97,7 @@ const AddLocation = ({propertyDetails, setPropertyDetails, nextStep}) => {
         </div>
 
         <Group position='center' mt={"xl"}>
-            <Button type="submit">Next Step</Button>
+            <Button type='submit'>Next</Button>
         </Group>
     </form>
   )
