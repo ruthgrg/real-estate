@@ -16,6 +16,8 @@ import {QueryClient, QueryClientProvider} from "react-query"
 import {ToastContainer} from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import UserDetailContext from "./context/userDetailContext";
+import Booking from "./pages/booking/Booking";
+import Favourites from "./pages/favourites/Favourites";
 
 function App() {
   // Instance of our client
@@ -40,6 +42,8 @@ function App() {
                   <Route index element={<Properties/>}/>
                   <Route path=":propertyId" element={<Property/>}/>
                 </Route>
+                <Route path="/bookings" element={<Booking />}></Route>
+                <Route path="/favourites" element={<Favourites />}></Route>
               </Route>
             </Routes> 
           </Suspense>
