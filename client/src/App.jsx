@@ -28,6 +28,7 @@ function App() {
     token: null
   });
 
+  console.log("Favourites from app", userDetails.favourites)
   return (
     <UserDetailContext.Provider value={{userDetails, setUserDetails}}>
       {/* UserSetailContext.Provider ensure that user is available in whole app */}

@@ -10,8 +10,10 @@ const Favourites = () => {
   //custom hook
   const {data, isError, isLoading} = useProperties();
   const [filter, setFilter] = useState("");
-  const {userDetails : {bookings}} = useContext(UserDetailContext);
+  const {userDetails : {favourites}} = useContext(UserDetailContext);
 
+  console.log("fav", favourites)
+  console.log('data', data)
   if(isError) {
     return (
       <div className="wrapper">
@@ -34,14 +36,16 @@ const Favourites = () => {
     );
   }
 
-  const getBookedProperties = (data, bookings) => {
-    return data.filter(property => bookings.map(booking => booking.id).includes(property.id));
+  const getFavouriteProperties = (data, favourites) => {
+    return data.filter(property => favourites.map(favourite => favourite).includes(property.id));
   }
+
+  console.log('Fav function', getFavouriteProperties(data, favourites))
 
   return (
     <div className='wrapper'>
        {
-        bookings.length === 0 
+        favourites.length === 0 
         
         ?
 
@@ -51,7 +55,7 @@ const Favourites = () => {
                 setFilter={setFilter}
             />
             <div className="paddings">
-                <div>There is no bookings to display</div>
+                <div>There is no favourites to display</div>
             </div>
         </div>
 
@@ -59,12 +63,12 @@ const Favourites = () => {
 
         <div className="flexColCenter paddings innerWidth properties-container">
             <SearchBar
-            filter={filter}
-            setFilter={setFilter}
+                filter={filter}
+                setFilter={setFilter}
             />
             <div className="paddings flexCenter properties">
             {
-                    getBookedProperties(data, bookings).filter((property) =>
+                    getFavouriteProperties(data, favourites).filter((property) =>
                     property.title.toLowerCase().includes(filter.toLowerCase()) ||
                     property.city.toLowerCase().includes(filter.toLowerCase()) ||
                     property.country.toLowerCase().includes(filter.toLowerCase()))
