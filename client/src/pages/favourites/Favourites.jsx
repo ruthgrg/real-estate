@@ -12,8 +12,6 @@ const Favourites = () => {
   const [filter, setFilter] = useState("");
   const {userDetails : {favourites}} = useContext(UserDetailContext);
 
-  console.log("fav", favourites)
-  console.log('data', data)
   if(isError) {
     return (
       <div className="wrapper">
@@ -37,10 +35,8 @@ const Favourites = () => {
   }
 
   const getFavouriteProperties = (data, favourites) => {
-    return data.filter(property => favourites.map(favourite => favourite).includes(property.id));
+    return data.filter(property => favourites.includes(property.id));
   }
-
-  console.log('Fav function', getFavouriteProperties(data, favourites))
 
   return (
     <div className='wrapper'>

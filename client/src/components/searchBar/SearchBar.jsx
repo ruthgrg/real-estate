@@ -8,7 +8,7 @@ const SearchBar = ({filter, setFilter}) => {
                     <HiLocationMarker color="var(--blue)" size={25}/>
                     <input 
                       type="text" 
-                      placeholder="Search by title/city/country" 
+                      placeholder="Search..." 
                       value={filter} 
                       onChange={(e) => setFilter(() => (e.target.value))}/>
                     <button className="button">Search</button>

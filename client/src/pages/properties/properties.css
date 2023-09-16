@@ -35,6 +35,6 @@
 
 @media(max-width: 764px) {
     .properties {
-        grid-template-columns: repeat(1, minmax(0, 1fr));
+        display: flex;
     }
 }

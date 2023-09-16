@@ -13,6 +13,7 @@ const Heart = ({id}) => {
     const{validateLogin} = useAuthCheck();
     const{user} = useAuth0();
     const {userDetails: {favourites, token}, setUserDetails} = useContext(UserDetailContext);
+    
     const {mutate} = useMutation({
         mutationFn: () => toFav(id, user?.email, token),
         onSuccess: () => setUserDetails(prev => ({

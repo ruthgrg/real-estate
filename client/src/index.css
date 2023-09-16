@@ -17,8 +17,11 @@
   font-family: "Poppins", sans-serif;
   scroll-behavior: smooth;
 }
-body {
- overflow-x: hidden;   
+
+
+body,
+html {
+  overflow-x: hidden;
 }
 
 .wrapper {
@@ -133,5 +136,12 @@ a {
   }
   .orangeText {
     font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 450px) {
+  .button {
+    font-weight: 300;
+    padding: 0.6rem 1rem;
   }
 }

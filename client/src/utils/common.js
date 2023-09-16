@@ -13,7 +13,6 @@ export const updateFavourites = (id, favourites) => {
   if (favourites.includes(id)) {
     return favourites.filter((favouriteId) => favouriteId !== id);
   } else {
-    console.log("common js", [...favourites, id]);
     return [...favourites, id];
   }
 };
