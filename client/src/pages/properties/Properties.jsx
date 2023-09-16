@@ -3,10 +3,13 @@ import SearchBar from '../../components/searchBar/SearchBar'
 import useProperties from "../../hooks/UseProperties";
 import {PuffLoader} from "react-spinners"
 import PropertyCard from "../../components/propertyCard/PropertyCard";
+import { useState } from "react";
 
 const Properties = () => {
   //custom hook
   const {data, isError, isLoading} = useProperties();
+  const [filter, setFilter] = useState("");
+
   if(isError) {
     return (
       <div className="wrapper">
@@ -31,10 +34,21 @@ const Properties = () => {
   return (
     <div className='wrapper'>
       <div className="flexColCenter paddings innerWidth properties-container">
-        <SearchBar/>
+        <SearchBar
+          filter={filter}
+          setFilter={setFilter}
+        />
         <div className="paddings flexCenter properties">
           {
-            data.map((card, i) => (<PropertyCard key={i} 
+            // data.map((card, i) => (<PropertyCard key={i} 
+            //     card={card}
+            //   />)
+              data
+              .filter((property) => 
+                property.title.toLowerCase().includes(filter.toLowerCase()) ||
+                property.city.toLowerCase().includes(filter.toLowerCase()) ||
+                property.country.toLowerCase().includes(filter.toLowerCase()))
+              .map((card, i) => (<PropertyCard key={i} 
                 card={card}
               />)
             )
