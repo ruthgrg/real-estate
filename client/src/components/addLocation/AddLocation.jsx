@@ -29,7 +29,6 @@ const AddLocation = ({ propertyDetails, setPropertyDetails, nextStep }) => {
             setPropertyDetails((prev) => ({
                 ...prev,
                 country: country,
-                country: country,
                 city: city,
                 address: address,
             })
