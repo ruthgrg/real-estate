@@ -12,7 +12,6 @@ const app = express();
 
 // Initializing port (8000) from the env file and setting 3000 as a fallback port if 8000 somehow fails
 const PORT = process.env.PORT || 3000;
-// console.log("PORT", PORT);
 
 // One time setup to start server
 

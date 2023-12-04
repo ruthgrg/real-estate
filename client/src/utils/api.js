@@ -72,7 +72,6 @@ export const bookVisit = async (date, propertyId, email, token) => {
 };
 
 export const removeBooking = async (id, email, token) => {
-  console.log("id", id);
   try {
     await api.post(
       `/user/cancelBooking/${id}`,
