@@ -1,10 +1,10 @@
-import {useEffect, useRef, useState} from "react"
-import {AiOutlineCloudUpload} from "react-icons/ai"
-import {Group, Button} from "@mantine/core"
+import { useEffect, useRef, useState } from "react"
+import { AiOutlineCloudUpload } from "react-icons/ai"
+import { Group, Button } from "@mantine/core"
 import "./uploadImage.css"
 
-const UploadImage = ({propertyDetails, setPropertyDetails, nextStep, prevStep}) => {
-  
+const UploadImage = ({ propertyDetails, setPropertyDetails, nextStep, prevStep }) => {
+
     const [imageURL, setImageURL] = useState(propertyDetails.image);
     const cloudinaryRef = useRef();
     const widgetRef = useRef();
@@ -15,6 +15,8 @@ const UploadImage = ({propertyDetails, setPropertyDetails, nextStep, prevStep}) 
             image: imageURL
         }));
 
+        console.log('UploadImage propertyDetails', propertyDetails);
+
         nextStep();
 
     }
@@ -24,41 +26,41 @@ const UploadImage = ({propertyDetails, setPropertyDetails, nextStep, prevStep}) 
         widgetRef.current = cloudinaryRef.current.createUploadWidget({
             cloudName: "dg6cjp9kr",
             uploadPreset: "tbeqjwug",
-            maxFiles:1
+            maxFiles: 1
         },
-        (err, result) => {
-            if(result.event === "success") {
-                setImageURL(result.info.secure_url);
+            (err, result) => {
+                if (result.event === "success") {
+                    setImageURL(result.info.secure_url);
+                }
             }
-        }
         );
 
-    },[]);
+    }, []);
 
 
     return (
-    <div className='flexColCenter uploadWrapper'>
-        {
-            !imageURL ? (
-                <div className='flexColCenter uploadZone' onClick={() => widgetRef.current?.open()}>
-                    <AiOutlineCloudUpload size={50} color="gray"/>
-                    <span>Upload Image</span>
-                </div>
-            ) 
-            : 
-            (
-                <div className='uploadedImage' onClick={() => widgetRef.current?.open()}>
-                    <img src={imageURL} alt=''/>
-                </div>
-            )
-        }
+        <div className='flexColCenter uploadWrapper'>
+            {
+                !imageURL ? (
+                    <div className='flexColCenter uploadZone' onClick={() => widgetRef.current?.open()}>
+                        <AiOutlineCloudUpload size={50} color="gray" />
+                        <span>Upload Image</span>
+                    </div>
+                )
+                    :
+                    (
+                        <div className='uploadedImage' onClick={() => widgetRef.current?.open()}>
+                            <img src={imageURL} alt='' />
+                        </div>
+                    )
+            }
 
-        <Group position='center' mt={"xl"}>
-            <Button variant="default" onClick={prevStep}>Back</Button>
-            <Button onClick={handleNext} disabled={!imageURL}>Next</Button>
-        </Group>
-    </div>
-  )
+            <Group position='center' mt={"xl"}>
+                <Button variant="default" onClick={prevStep}>Back</Button>
+                <Button onClick={handleNext} disabled={!imageURL}>Next</Button>
+            </Group>
+        </div>
+    )
 }
 
 export default UploadImage

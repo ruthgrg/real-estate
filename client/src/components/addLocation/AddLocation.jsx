@@ -25,6 +25,9 @@ const AddLocation = ({ propertyDetails, setPropertyDetails, nextStep }) => {
 
     const handleSubmit = () => {
         const { hasErrors } = form.validate();
+
+        console.log('AddLocation propertyDetails', propertyDetails);
+
         if (!hasErrors) {
             setPropertyDetails((prev) => ({
                 ...prev,

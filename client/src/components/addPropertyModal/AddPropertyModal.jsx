@@ -9,7 +9,7 @@ import Facilities from "../facilities/Facilities";
 const AddPropertyModal = ({ opened, setOpened }) => {
     const [active, setActive] = useState(0);
     const { user } = useAuth0();
-    console.log('user Email', user?.email)
+
     const [propertyDetails, setPropertyDetails] = useState({
         title: "",
         description: "",
@@ -26,6 +26,8 @@ const AddPropertyModal = ({ opened, setOpened }) => {
         userEmail: user?.email
 
     });
+
+    console.log('AddPropertyModal propertyDetails', propertyDetails);
 
     const nextStep = () => setActive((current) => (current < 4 ? current + 1 : current));
     const prevStep = () => setActive((current) => (current > 0 ? current - 1 : current));

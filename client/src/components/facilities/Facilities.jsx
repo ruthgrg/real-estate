@@ -24,7 +24,8 @@ const Facilities = ({ prevStep, nextStep, propertyDetails, setPropertyDetails, s
     });
 
     const { bedrooms, parking, bathrooms } = form.values;
-    console.log('propertyDetails from facilities', propertyDetails)
+
+    console.log('Facilities propertyDetails', propertyDetails);
 
     /** Uploading property in the db logic */
     const { user } = useAuth0();
@@ -65,7 +66,6 @@ const Facilities = ({ prevStep, nextStep, propertyDetails, setPropertyDetails, s
     //         mutate();
     //     } 
     // }
-
 
 
 

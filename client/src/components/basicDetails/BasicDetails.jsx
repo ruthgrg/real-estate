@@ -1,8 +1,8 @@
 import { useForm } from '@mantine/form';
-import { Box, NumberInput, TextInput,Group, Button } from '@mantine/core';
+import { Box, NumberInput, TextInput, Group, Button } from '@mantine/core';
 import { validateString } from '../../utils/common';
 
-const BasicDetails = ({prevStep, nextStep, propertyDetails, setPropertyDetails}) => {
+const BasicDetails = ({ prevStep, nextStep, propertyDetails, setPropertyDetails }) => {
 
     const form = useForm({
         initialValues: {
@@ -17,16 +17,18 @@ const BasicDetails = ({prevStep, nextStep, propertyDetails, setPropertyDetails})
             price: (value) => value < 1000 ? "Must be greater than 999 dollars" : null
         }
     });
-    const {title, description, price} = form.values;
+    const { title, description, price } = form.values;
 
     const handleSubmit = () => {
-        const {hasErrors} = form.validate();
-    
-        if(!hasErrors) {
+        const { hasErrors } = form.validate();
+
+        console.log('BasicDetails propertyDetails', propertyDetails);
+
+        if (!hasErrors) {
             setPropertyDetails((prev) => ({
-                ...prev, 
-                title: title, 
-                description: description, 
+                ...prev,
+                title: title,
+                description: description,
                 price: price
             }));
             nextStep();
@@ -34,41 +36,41 @@ const BasicDetails = ({prevStep, nextStep, propertyDetails, setPropertyDetails})
     }
 
 
-  return (
-    <Box maw="50%" mx="auto" my="md">
-        <form onSubmit={(e) => {e.preventDefault(); handleSubmit()}}>
-            <TextInput
-                // width={"100%"}
-                withAsterisk
-                label="Title"
-                placeholder="Property Name"
-                {...form.getInputProps("title", {type: "input"})}
-            />
+    return (
+        <Box maw="50%" mx="auto" my="md">
+            <form onSubmit={(e) => { e.preventDefault(); handleSubmit() }}>
+                <TextInput
+                    // width={"100%"}
+                    withAsterisk
+                    label="Title"
+                    placeholder="Property Name"
+                    {...form.getInputProps("title", { type: "input" })}
+                />
 
-            <TextInput
-                // width={"100%"}
-                withAsterisk
-                label="Description"
-                placeholder="About your property"
-                {...form.getInputProps("description", {type: "input"})}
-            />
+                <TextInput
+                    // width={"100%"}
+                    withAsterisk
+                    label="Description"
+                    placeholder="About your property"
+                    {...form.getInputProps("description", { type: "input" })}
+                />
 
-            <NumberInput
-                withAsterisk
-                label="Price"
-                placeholder="1000"
-                min={0}
-                {...form.getInputProps("price")}
-            />
+                <NumberInput
+                    withAsterisk
+                    label="Price"
+                    placeholder="1000"
+                    min={0}
+                    {...form.getInputProps("price")}
+                />
 
-            <Group position='center' mt={"xl"}>
-                <Button variant="default" onClick={prevStep}>Back</Button>
-                <Button type='submit'>Next</Button>
-            </Group>
+                <Group position='center' mt={"xl"}>
+                    <Button variant="default" onClick={prevStep}>Back</Button>
+                    <Button type='submit'>Next</Button>
+                </Group>
 
-        </form>
-    </Box>
-  )
+            </form>
+        </Box>
+    )
 }
 
 export default BasicDetails
