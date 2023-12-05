@@ -36,7 +36,7 @@
 
 }
 
-.r-card>:nth-child() {
+.r-card>:nth-child(2) {
     font-size: .7rem;
     width: 15rem;
 }
