@@ -10,7 +10,6 @@ const AddPropertyModal = ({ opened, setOpened }) => {
     const [active, setActive] = useState(0);
     const { user } = useAuth0();
 
-    console.log('useremail from AddPropertyModal', user?.email)
     const [propertyDetails, setPropertyDetails] = useState({
         title: "",
         description: "",
@@ -26,7 +25,6 @@ const AddPropertyModal = ({ opened, setOpened }) => {
         },
     });
 
-    console.log('AddPropertyModal propertyDetails', propertyDetails);
 
     const nextStep = () => setActive((current) => (current < 4 ? current + 1 : current));
     const prevStep = () => setActive((current) => (current > 0 ? current - 1 : current));

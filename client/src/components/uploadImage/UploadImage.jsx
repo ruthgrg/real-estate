@@ -15,7 +15,6 @@ const UploadImage = ({ propertyDetails, setPropertyDetails, nextStep, prevStep }
             image: imageURL
         }));
 
-        console.log('UploadImage propertyDetails', propertyDetails);
 
         nextStep();
 

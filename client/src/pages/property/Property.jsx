@@ -51,7 +51,6 @@ const Property = () => {
     }
   });
 
-  console.log('User email from booking model', user?.email)
 
   if (isError) {
     return (

@@ -22,8 +22,6 @@ const BasicDetails = ({ prevStep, nextStep, propertyDetails, setPropertyDetails 
     const handleSubmit = () => {
         const { hasErrors } = form.validate();
 
-        console.log('BasicDetails propertyDetails', propertyDetails);
-
         if (!hasErrors) {
             setPropertyDetails((prev) => ({
                 ...prev,

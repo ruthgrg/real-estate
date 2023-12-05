@@ -53,7 +53,6 @@ export const getAllBookings = asyncHandler(async (req, res) => {
       select: { bookedVisits: true },
     });
 
-    // console.log(userBookedVisits);
     res.status(200).send(userBookedVisits);
   } catch (err) {
     throw new Error(err.message);
