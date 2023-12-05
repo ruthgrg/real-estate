@@ -145,13 +145,14 @@ export const getAllBookings = async (email, token) => {
   }
 };
 
-export const createResidency = async (data, token) => {
+export const createResidency = async (data, token, userEmail) => {
   console.log(data);
   try {
     const residency = await api.post(
       "/residency/create",
       {
         data,
+        userEmail,
       },
       {
         headers: { Authorization: `Bearer ${token}` },

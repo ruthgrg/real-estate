@@ -31,8 +31,9 @@ const Facilities = ({ prevStep, nextStep, propertyDetails, setPropertyDetails, s
     const { user } = useAuth0();
     const { userDetails: { token } } = useContext(UserDetailContext);
     const { refetch: refetchProperties } = useProperties();
+    const userEmail = user?.email;
     const { mutate, isLoading } = useMutation({
-        mutationFn: () => createResidency({ ...propertyDetails, facilities: { bedrooms, parking, bathrooms } }, token),
+        mutationFn: () => createResidency({ ...propertyDetails, facilities: { bedrooms, parking, bathrooms } }, token, userEmail),
         onError: (response) => toast.error(response.data.message, { position: "bottom-right" }),
         onSettled: () => {
             toast.success("Added Successfully", { position: "bottom-right" });
@@ -49,7 +50,6 @@ const Facilities = ({ prevStep, nextStep, propertyDetails, setPropertyDetails, s
                     parking: 0,
                     bathrooms: 0
                 },
-                userEmail: user.email
             })
             setOpened(false);
             setActive(0);
