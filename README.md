@@ -72,7 +72,7 @@ git clone https://github.com/ruthgrg/real-estate.git
 
 ## Live Demo
 
-Check out Homyz live on Vercel: [Homyz on Vercel](hhttps://app-homyz.vercel.app/)
+Check out Homyz live here: [Homyz Url](https://app-homyz.vercel.app/)
 
 ## Note
 
